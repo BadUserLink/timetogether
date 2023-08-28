@@ -4,16 +4,69 @@
   <title>Calculator de date</title>
 </head>
 <body>
+  <head>
   <h1 style="text-align: center;">Calculator de la ziua de cind ne-am inceput a intilni!!!</h1>
-  
+  </head>
+
+  <style>
+  h2,h1{
+    color:white;
+  }    
+  BODY {
+    background-color: #222;
+    background-image: 
+      linear-gradient(to right, rgba(255,255,255,.025) 10%, transparent 0),
+      linear-gradient(#222, #000);
+    background-size: .75em 100%, 100% 100%;
+    background-attachment: fixed;
+  }
+  .wrapper {
+    position: relative;
+    flex-grow: 1;
+    margin: auto;
+    max-width: 1200px;
+    max-height: 1200px;
+    
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 2vmin;
+    justify-items: center;
+    align-items: center;
+  }
+
+  IMG {
+    z-index: 1;
+    grid-column: span 2;
+    max-width: 100%;
+    margin-bottom: -52%;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    transform: scale(1);
+    transition: all .25s;
+    
+    &:nth-child(7n + 1) {
+      grid-column: 2 / span 2;
+    }
+    
+    &:hover {
+      z-index: 2;
+      transform: scale(2);
+    }
+  }
+
+  </style>
   
   <h2 id="result"></h2>
   <h2 id="result0"></h2>
   <h2 id="result1"></h2>
   <h2 id="result2"></h2>
-  <p id="clock"></p>
-  <footer style="position:absolute; bottom: 0px;">
-    <p style="margin-bottom: 0%;">Lena cacasca &#128151</p>
+
+  <div class="wrapper" id="image-container"> 
+  </div>
+  
+  <div class="infinite-photo-grid"></div>
+  <footer style="position:absolute; margin-bottom: 0px;">
+    <p>Lena cacasca &#128151</p>
   </footer>
   <script>
     function updateData() {
@@ -40,9 +93,25 @@
       resultElement0.textContent = "Au trecut " + DifferenceDays + " zile pina in acest moment";
       resultElement1.textContent = "Au trecut " + DifferenceDays1 + " minute pina in acest moment";
       resultElement2.textContent = "Au trecut " + DifferenceDays2 + " secunde pina in acest moment";
+      
     }
+
     setInterval(updateData, 1000);
   
+    var imageFilenames = [];
+
+        var imageContainer = document.getElementById('image-container');
+
+        for (var i = 1; i < 19; i++) {
+            var imageSrc = i+'.jpeg'; 
+            var imgElement = document.createElement('img');
+            imgElement.src = imageSrc;
+            imgElement.alt = 'Image ' + (i + 1);
+            
+            imageContainer.appendChild(imgElement);
+        }
+
+
   </script>
 </body>
 </html>
