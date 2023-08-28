@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator de date</title>
+</head>
+<body>
+  <h1 style="text-align: center;">Calculator de la ziua de cind ne-am inceput a intilni!!!</h1>
+  
+  
+  <h2 id="result"></h2>
+  <h2 id="result0"></h2>
+  <h2 id="result1"></h2>
+  <h2 id="result2"></h2>
+  <p id="clock"></p>
+  <footer style="position:absolute; bottom: 0px;">
+    <p style="margin-bottom: 0%;">Lena cacasca &#128151</p>
+  </footer>
+  <script>
+    function updateData() {
+        let startDate = new Date('2022-01-11');
+
+        let currentDate = new Date();
+
+        let timeDifferenceInMilliseconds = currentDate - startDate;
+
+        let millisecondsPerDay = 1000;
+        let DifferenceDays = Math.floor(timeDifferenceInMilliseconds/(millisecondsPerDay*60*60*24));
+        let DifferenceDays1 = Math.floor(timeDifferenceInMilliseconds/(millisecondsPerDay*60));
+        let DifferenceDays2 = Math.floor(timeDifferenceInMilliseconds/millisecondsPerDay);
+
+        let resultElement = document.getElementById("result");
+        let resultElement0 = document.getElementById("result0");
+        let resultElement1 = document.getElementById("result1");
+        let resultElement2 = document.getElementById("result2");
+
+        let options = { year: '2-digit', month: '2-digit', day: '2-digit' };
+        let formattedStartDate = startDate.toLocaleDateString('en-GB', options);
+
+      resultElement.textContent = "Au trecut " + (DifferenceDays/365).toFixed(2) + " ani pina in acest moment";
+      resultElement0.textContent = "Au trecut " + DifferenceDays + " zile pina in acest moment";
+      resultElement1.textContent = "Au trecut " + DifferenceDays1 + " minute pina in acest moment";
+      resultElement2.textContent = "Au trecut " + DifferenceDays2 + " secunde pina in acest moment";
+    }
+    setInterval(updateData, 1000);
+  
+  </script>
+</body>
+</html>
